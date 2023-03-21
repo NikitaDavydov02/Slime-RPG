@@ -10,6 +10,7 @@ public class MainManager : MonoBehaviour
     public static SceneGenerator SceneGenerator;
     public static GameProgressManager GameProgressManager;
     public static UIManager UIManager;
+    public static Shop Shop;
     public static bool GameIsFinished { get; private set; } = false;
     public float TimeSinceStart { get; private set; }
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class MainManager : MonoBehaviour
         GameProgressManager = GetComponent<GameProgressManager>();
         SceneGenerator = GetComponent<SceneGenerator>();
         UIManager = GetComponent<UIManager>();
+        Shop = GetComponent<Shop>();
         TimeSinceStart = 0;
     }
     private void Start()

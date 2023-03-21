@@ -5,7 +5,6 @@ using System;
 
 public class GameProgressManager : MonoBehaviour
 {
-    public int CurrentCoints { get; private set; } = 0;
     public int KilledEnemies { get; private set; } = 0;
     // Start is called before the first frame updateC
     void Start()
@@ -21,7 +20,7 @@ public class GameProgressManager : MonoBehaviour
     }
     public void EnemiIsKilled()
     {
-        CurrentCoints += 10;
+        MainManager.Shop.Add(10);
         KilledEnemies++;
         //MainManager.UIManager.UpdateCoins();
     }

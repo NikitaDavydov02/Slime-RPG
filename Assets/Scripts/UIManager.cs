@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CoinsText.text = MainManager.GameProgressManager.CurrentCoints.ToString();
+        CoinsText.text = MainManager.Shop.Balance.ToString();
         foreach(Slider slider in enemySliders.Keys)
         {
             slider.transform.position = Camera.main.WorldToScreenPoint(enemySliders[slider].gameObject.transform.position);
