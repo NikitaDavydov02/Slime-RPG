@@ -1,25 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ShopItem
+public class ShopItem:MonoBehaviour
 {
-    public int Cost { get; set; }
-    public Feature Feature { get; set; }
-    public ShopItem(int cost, Feature feature)
+    public int Cost;
+    public Feature Feature;
+    [SerializeField]
+    private Text CostText;
+    //public ShopItem(int cost, Feature feature)
+    //{
+    //    Cost = cost;
+    //    Feature = feature;
+    //}
+    private void Start()
     {
-        Cost = cost;
-        Feature = feature;
+        
+    }
+    private void Update()
+    {
+        CostText.text = Cost.ToString();
+    }
+    public void Buy()
+    {
+        MainManager.Shop.BuyItem(this);
     }
 }
-public enum Feature {
-    Health,
-    AtackSpeed,
-    Damage,
-    Protection,
-    HPRecovery,
-    CriticalHitChanse,
-    CriticalHitDamage,
 
-}
 

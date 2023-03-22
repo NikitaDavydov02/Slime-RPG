@@ -21,7 +21,18 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private RectTransform shop;
     private Slider playerHPSlider;
+    [SerializeField]
+    private GameObject shopItemPanelPrefab;
+    [SerializeField]
+    private List<GameObject> shopItemPanelList;
+    private Dictionary<GameObject, ShopItem> shopItemPanelDictionary;
+    [SerializeField]
+    private GameObject scrollContent;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        //shopItemPanelList = new Dictionary<GameObject, ShopItem>();
+    }
     void Start()
     {
         MainManager.EnemyIsKilled += EnemyIsKilled;
@@ -31,11 +42,14 @@ public class UIManager : MonoBehaviour
 
         playerHPSlider.maxValue = MainManager.EnemyAndPlayerManager.Player.gameObject.GetComponent<PlayerMovment>().MaxHP;
         playerHPSlider.value = MainManager.EnemyAndPlayerManager.Player.gameObject.GetComponent<PlayerMovment>().HP;
+
+        Debug.Log("ScreenHeight: " + Screen.height);
         float shopHeight = Screen.height / 3;
         float x = shop.rect.x;
         float y = shop.rect.y;
         float width = shop.rect.width;
-        shop.rect.Set(x, y, width, shopHeight);
+        //shop.rect.Set(0, 0, Screen.width, shopHeight);
+        //shop.rect.Set(x, y, width, shopHeight);
         //MainManager.EnemyIsSpawned += EnemyIsSpawned;
     }
 
@@ -101,4 +115,5 @@ public class UIManager : MonoBehaviour
         text.gameObject.transform.position = Camera.main.WorldToScreenPoint(MainManager.EnemyAndPlayerManager.Player.gameObject.transform.position);
         text.text = "-" + value.ToString();
     }
+
 }

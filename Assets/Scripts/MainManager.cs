@@ -20,8 +20,9 @@ public class MainManager : MonoBehaviour
         CameraScript = Camera.main.GetComponent<CameraScript>();
         GameProgressManager = GetComponent<GameProgressManager>();
         SceneGenerator = GetComponent<SceneGenerator>();
-        UIManager = GetComponent<UIManager>();
+        
         Shop = GetComponent<Shop>();
+        UIManager = GetComponent<UIManager>();
         TimeSinceStart = 0;
     }
     private void Start()

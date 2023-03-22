@@ -20,7 +20,6 @@ public class PlayerMovment : Damagable
     [SerializeField]
     public GameObject bulletPrefab;
 
-
     void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
@@ -82,5 +81,14 @@ public class PlayerMovment : Damagable
         MainManager.FinishGame();
         Debug.Log("PlayerDie");
         transform.Rotate(0, 0, 90);
+    }
+    public void Enhanse(Feature feature)
+    {
+        switch (feature)
+        {
+            case Feature.AtackSpeed:
+                TimeBetweenDamage = TimeBetweenDamage / 1.2f;
+                break;
+        }
     }
 }

@@ -6,16 +6,17 @@ using System;
 public class Shop : MonoBehaviour
 {
     public int Balance { get; private set; } = 0;
-    public List<ShopItem> Items { get; private set; }
+    [SerializeField]
+    public List<ShopItem> Items;
     // Start is called before the first frame update
     void Start()
     {
-        Items = new List<ShopItem>();
-        foreach (Feature f in Enum.GetValues(typeof(Feature)))
-        {
-            ShopItem item = new ShopItem(5,f);
-            Items.Add(item);
-        }
+        //foreach (Feature f in Enum.GetValues(typeof(Feature)))
+        //{
+        //    ShopItem item = new ShopItem(5,f);
+        //    Items.Add(item);
+        //}
+        //MainManager.UIManager.UpddateShopList();
     }
 
     // Update is called once per frame
@@ -27,14 +28,39 @@ public class Shop : MonoBehaviour
     {
         Balance += value;
     }
-    public bool BuyItem(ShopItem item)
+    public void BuyItem(string feature)
     {
+        Debug.Log("Buy");
+        ShopItem item = null;
+        foreach (ShopItem i in Items)
+            if (i.Feature.ToString()== feature)
+                item = i;
+        if (item == null)
+            return;
         if (Balance < item.Cost || !Items.Contains(item))
-            return false;
+            return;
         Balance -= item.Cost;
-        item.Cost++;
-        return true;
 
+        item.Cost++;
     }
-    
+    public void BuyItem(ShopItem item)
+    {
+        Debug.Log("Buy!");
+        if (Balance < item.Cost || !Items.Contains(item))
+            return;
+        Balance -= item.Cost;
+        MainManager.EnemyAndPlayerManager.Player.GetComponent<PlayerMovment>().Enhanse(item.Feature);
+        item.Cost++;
+    }
+}
+public enum Feature
+{
+    Health,
+    AtackSpeed,
+    Damage,
+    Protection,
+    HPRecovery,
+    CriticalHitChanse,
+    CriticalHitDamage,
+
 }

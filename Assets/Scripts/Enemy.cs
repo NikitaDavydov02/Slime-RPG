@@ -22,13 +22,11 @@ public class Enemy : Damagable
     {
         if (MainManager.GameIsFinished)
             return;
-        Debug.Log("Pos:" + transform.position);
         if(!start)
             return;
         //transform.Translate(0, 0, Time.deltaTime);
         if (transform.position.z - MainManager.EnemyAndPlayerManager.Player.transform.position.z > MinDistance)
         {
-            Debug.Log("Move:" + new Vector3(0, 0, -Velocity * Time.deltaTime));
             transform.Translate(new Vector3(0, 0, -Velocity * Time.deltaTime));
             //controller.Move(new Vector3(0, 0, -Velocity * Time.deltaTime));
         }
@@ -49,7 +47,6 @@ public class Enemy : Damagable
 
     public override void Die()
     {
-        Debug.Log("EnemyDie");
         MainManager.UIManager.EnemyIsKilled(this);
         MainManager.GameProgressManager.EnemiIsKilled();
         Destroy(this.gameObject);

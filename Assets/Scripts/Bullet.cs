@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
     private Vector3 StartPoint;
     private Vector3 direction;
     public int Damage;
+    public float MaxTime = 5;
+    private float time = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,9 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        time += Time.deltaTime;
+        if (time > MaxTime)
+            Destroy(this.gameObject);
         if (MainManager.GameIsFinished)
             return;
         if (EndPoint != Vector3.zero)
