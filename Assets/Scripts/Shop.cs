@@ -52,6 +52,12 @@ public class Shop : MonoBehaviour
         MainManager.EnemyAndPlayerManager.Player.GetComponent<PlayerMovment>().Enhanse(item.Feature);
         item.Cost++;
     }
+    public bool ICanBuy(ShopItem item)
+    {
+        if (Balance >= item.Cost)
+            return true;
+        return false;
+    }
 }
 public enum Feature
 {

@@ -9,6 +9,8 @@ public class ShopItem:MonoBehaviour
     public Feature Feature;
     [SerializeField]
     private Text CostText;
+    [SerializeField]
+    private Button BuyButton;
     //public ShopItem(int cost, Feature feature)
     //{
     //    Cost = cost;
@@ -21,6 +23,10 @@ public class ShopItem:MonoBehaviour
     private void Update()
     {
         CostText.text = Cost.ToString();
+        if (!MainManager.GameIsFinished && MainManager.Shop.ICanBuy(this))
+            BuyButton.enabled = true;
+        else
+            BuyButton.enabled = false;
     }
     public void Buy()
     {

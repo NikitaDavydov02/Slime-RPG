@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     Canvas canvas;
     [SerializeField]
     private RectTransform shop;
+    [SerializeField]
     private Slider playerHPSlider;
     [SerializeField]
     private GameObject shopItemPanelPrefab;
@@ -28,6 +29,8 @@ public class UIManager : MonoBehaviour
     private Dictionary<GameObject, ShopItem> shopItemPanelDictionary;
     [SerializeField]
     private GameObject scrollContent;
+    [SerializeField]
+    public GameObject NewGameButton;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -35,10 +38,11 @@ public class UIManager : MonoBehaviour
     }
     void Start()
     {
+        NewGameButton.SetActive(false);
         MainManager.EnemyIsKilled += EnemyIsKilled;
-        playerHPSlider = Instantiate(PlayerHPSliderPrefab) as Slider;
+        //playerHPSlider = Instantiate(PlayerHPSliderPrefab) as Slider;
         playerHPSlider.GetComponent<RectTransform>().SetParent(canvas.transform);
-        playerHPSlider.transform.position = Camera.main.WorldToScreenPoint(MainManager.EnemyAndPlayerManager.Player.gameObject.transform.position);
+        playerHPSlider.transform.position = Camera.main.WorldToScreenPoint(MainManager.EnemyAndPlayerManager.Player.gameObject.transform.position + new Vector3(0,1.5f,0));
 
         playerHPSlider.maxValue = MainManager.EnemyAndPlayerManager.Player.gameObject.GetComponent<PlayerMovment>().MaxHP;
         playerHPSlider.value = MainManager.EnemyAndPlayerManager.Player.gameObject.GetComponent<PlayerMovment>().HP;
@@ -59,7 +63,8 @@ public class UIManager : MonoBehaviour
         CoinsText.text = MainManager.Shop.Balance.ToString();
         foreach(Slider slider in enemySliders.Keys)
         {
-            slider.transform.position = Camera.main.WorldToScreenPoint(enemySliders[slider].gameObject.transform.position);
+            slider.transform.position = Camera.main.WorldToScreenPoint(enemySliders[slider].gameObject.transform.position+new Vector3(0,0.7f,0));
+            
             slider.value = enemySliders[slider].HP;
             //playerHPSlider.value = MainManager.EnemyAndPlayerManager.Player.gameObject.GetComponent<PlayerMovment>().HP;
         }
@@ -79,12 +84,13 @@ public class UIManager : MonoBehaviour
     }
     public void EnemyIsSpawned(Enemy enemy)
     {
-        Slider slider = Instantiate(HPSliderPrefab) as Slider;
+        Slider slider = Instantiate(CanvasScaler.Instantiate(playerHPSlider)) as Slider;
         slider.GetComponent<RectTransform>().SetParent(canvas.transform);
         slider.transform.position = Camera.main.WorldToScreenPoint(enemy.gameObject.transform.position);
         enemySliders.Add(slider,enemy);
         slider.maxValue = enemy.MaxHP;
         slider.value = enemy.HP;
+        slider.GetComponent<RectTransform>().localScale = playerHPSlider.GetComponent<RectTransform>().localScale;
     }
     public void EnemyIsKilled(Enemy enemy)
     {
@@ -108,6 +114,8 @@ public class UIManager : MonoBehaviour
         text.gameObject.GetComponent<RectTransform>().SetParent(canvas.transform);
         text.gameObject.transform.position = Camera.main.WorldToScreenPoint(enemy.gameObject.transform.position);
         text.text = "-" + value.ToString();
+        text.GetComponent<RectTransform>().localScale = CoinsText.GetComponent<RectTransform>().localScale;
+
     }
     public void PlayerIsHited(int value)
     {
@@ -115,6 +123,20 @@ public class UIManager : MonoBehaviour
         text.gameObject.GetComponent<RectTransform>().SetParent(canvas.transform);
         text.gameObject.transform.position = Camera.main.WorldToScreenPoint(MainManager.EnemyAndPlayerManager.Player.gameObject.transform.position);
         text.text = "-" + value.ToString();
+        text.GetComponent<RectTransform>().localScale = CoinsText.GetComponent<RectTransform>().localScale;
     }
-
+    public void GameOver()
+    {
+        NewGameButton.SetActive(true);
+    }
+    public void NewGame()
+    {
+        //NewGameButton.SetActive(false);
+        //foreach (Slider slider in enemySliders.Keys)
+        //{
+        //    Destroy(slider.gameObject);
+        //}
+        //s
+        Application.LoadLevel("SampleScene");
+    }
 }

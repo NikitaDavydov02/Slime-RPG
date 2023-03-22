@@ -21,10 +21,11 @@ public class PlayerMovment : Damagable
     public GameObject bulletPrefab;
     [SerializeField]
     private float BulletVelocity=5;
-
+    private Animator animator;
     void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -36,7 +37,7 @@ public class PlayerMovment : Damagable
         timeSinceLastDamageToEnemy += Time.deltaTime;
         stop = CheckToStop();
         if (!stop)
-            controller.Move(new Vector3(0, 0, Veclocity * Time.deltaTime));
+            transform.Translate(new Vector3(0, 0, Veclocity * Time.deltaTime));
         else
         {
             if (TimeBetweenDamage < timeSinceLastDamageToEnemy)

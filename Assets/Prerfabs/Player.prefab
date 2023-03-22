@@ -11,9 +11,7 @@ GameObject:
   - component: {fileID: 8719206143322523140}
   - component: {fileID: 8719206143322523147}
   - component: {fileID: 8719206143322523146}
-  - component: {fileID: 8719206143322523145}
   - component: {fileID: 8719206143322523144}
-  - component: {fileID: 8719206143322523141}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -86,20 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8719206143322523145
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8719206143322523151}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8719206143322523144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,26 +100,8 @@ MonoBehaviour:
   MaxHP: 100
   Veclocity: 5
   MaxFireDistance: 5
-  stop: 0
   TimeBetweenDamage: 1
   Damage: 5
   bulletPrefab: {fileID: 322612764429121381, guid: 4d9ba22dda522a14ea40c4bb89015ecd,
     type: 3}
---- !u!143 &8719206143322523141
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8719206143322523151}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  BulletVelocity: 10

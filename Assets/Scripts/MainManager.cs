@@ -32,6 +32,7 @@ public class MainManager : MonoBehaviour
     public static void FinishGame()
     {
         GameIsFinished = true;
+        UIManager.GameOver();
     }
 
     // Update is called once per frame

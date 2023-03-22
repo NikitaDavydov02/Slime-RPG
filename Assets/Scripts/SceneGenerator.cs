@@ -10,6 +10,7 @@ public class SceneGenerator : MonoBehaviour
     [SerializeField]
     private GameObject SpawnPrefab;
     private List<GameObject> spawnedPlanes;
+    public float DeleteDistance = 20;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,7 @@ public class SceneGenerator : MonoBehaviour
         List<GameObject> planesToDelete = new List<GameObject>();
         foreach (GameObject plane in spawnedPlanes)
         {
-            if (MainManager.EnemyAndPlayerManager.Player.transform.position.z - plane.transform.position.z > 10)
+            if (MainManager.EnemyAndPlayerManager.Player.transform.position.z - plane.transform.position.z > DeleteDistance)
             {
                 planesToDelete.Add(plane);
             }
