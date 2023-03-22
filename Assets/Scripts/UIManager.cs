@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     private Dictionary<Slider, Enemy> enemySliders = new Dictionary<Slider, Enemy>();
     [SerializeField]
     Canvas canvas;
+    [SerializeField]
+    private RectTransform shop;
     private Slider playerHPSlider;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +31,11 @@ public class UIManager : MonoBehaviour
 
         playerHPSlider.maxValue = MainManager.EnemyAndPlayerManager.Player.gameObject.GetComponent<PlayerMovment>().MaxHP;
         playerHPSlider.value = MainManager.EnemyAndPlayerManager.Player.gameObject.GetComponent<PlayerMovment>().HP;
-        
+        float shopHeight = Screen.height / 3;
+        float x = shop.rect.x;
+        float y = shop.rect.y;
+        float width = shop.rect.width;
+        shop.rect.Set(x, y, width, shopHeight);
         //MainManager.EnemyIsSpawned += EnemyIsSpawned;
     }
 
