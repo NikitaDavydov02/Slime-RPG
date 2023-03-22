@@ -19,6 +19,8 @@ public class PlayerMovment : Damagable
     private int Damage = 5;
     [SerializeField]
     public GameObject bulletPrefab;
+    [SerializeField]
+    private float BulletVelocity=5;
 
     void Start()
     {
@@ -57,7 +59,8 @@ public class PlayerMovment : Damagable
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         if (bullet != null)
         {
-            bulletScript.Damage = this.Damage;
+            bulletScript.Damage = damage;
+            bulletScript.Velocity = BulletVelocity;
             bulletScript.StartMoving(target.transform.position);
             ///
         }
@@ -88,6 +91,14 @@ public class PlayerMovment : Damagable
         {
             case Feature.AtackSpeed:
                 TimeBetweenDamage = TimeBetweenDamage / 1.2f;
+                break;
+            case Feature.Damage:
+                Damage++;
+                break;
+            case Feature.Health:
+                HP += 10;
+                if (HP < MaxHP)
+                    HP = MaxHP;
                 break;
         }
     }

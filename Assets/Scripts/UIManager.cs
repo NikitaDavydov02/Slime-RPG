@@ -61,8 +61,9 @@ public class UIManager : MonoBehaviour
         {
             slider.transform.position = Camera.main.WorldToScreenPoint(enemySliders[slider].gameObject.transform.position);
             slider.value = enemySliders[slider].HP;
-            playerHPSlider.value = MainManager.EnemyAndPlayerManager.Player.gameObject.GetComponent<PlayerMovment>().HP;
+            //playerHPSlider.value = MainManager.EnemyAndPlayerManager.Player.gameObject.GetComponent<PlayerMovment>().HP;
         }
+        playerHPSlider.value = MainManager.EnemyAndPlayerManager.Player.gameObject.GetComponent<PlayerMovment>().HP;
     }
     public void EnemyIsKilled(object sender,EventArgs args)
     {
